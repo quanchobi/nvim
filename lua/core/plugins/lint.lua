@@ -1,3 +1,3 @@
 return {
-    'mfussenegger/nvim-lint'
+    'dense-analysis/ale',
 }

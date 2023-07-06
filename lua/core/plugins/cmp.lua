@@ -87,6 +87,8 @@ return {
             snippet = {
                 expand = function(args) luasnip.lsp_expand(args.body) end,
             },
+            -- Set up lspconfig
+            
             -- Formatting
             formatting = {
                 format = function(entry, vim_item)
