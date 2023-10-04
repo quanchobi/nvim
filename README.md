@@ -1,23 +1,14 @@
-# nvim-conf
+# Quanchobi's neovim config
+A lightweight, highly customizable, and modular neovim configuration
 
-A fast, powerful, and modular PDE configuration for neovim powered by [lazy.nvim](https://github.com/folke/lazy.nvim).
-
-WARNING: Currently unfinished
-
-## Key principles
-
-### Modularity
-
-Each plugin is self-contained within its own config file, removing the config file removes the plugin.
-
-### Plug and Play
-
-As long as all dependencies are installed, opening neovim will automatically install everything.
-
-### Speed
-
-Lazy loading wherever possible
+## Dependencies
+[neovim](https://github.com/neovim/neovim)
+[fzf](https://github.com/junegunn/fzf)
+[treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+[npm](https://github.com/npm/cli)
+[make](https://www.gnu.org/software/make/)
+[python](https://www.python.org/)
 
 ## Installation
-
-Clone the repository into ~/.config/nvim
+Simply clone to wherever the neovim configuration is handled for your operating system.
+If you want to simply add a plugin from here, all files should be self contained, so pick and choose whichever ones you want

@@ -1,24 +1,27 @@
 return {
-    'windwp/nvim-autopairs',
-    config = function()
+    "windwp/nvim-autopairs",
+    dependencies = {
+        {   "hrsh7th/nvim-cmp",
+            optional = true
+        }
+    },
+    event = "InsertEnter",
+    opts = {
+        check_ts = true,
+        ts_config = { },
+    },
+    config = function(_, opts)
         local autopairs_status, autopairs = pcall(require, 'nvim-autopairs')
         if not autopairs_status then
             return
         end
+        autopairs.setup(opts)
 
-        autopairs.setup({
-            check_ts = true,
-            ts_config = {
-            },
-        })
-
-        -- import nvim-autopairs completion functionality safely
         local cmp_autopairs_setup, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
         if not cmp_autopairs_setup then
             return
         end
 
-        -- import nvim-cmp plugin safely (completions plugin)
         local cmp_setup, cmp = pcall(require, "cmp")
         if not cmp_setup then
             return

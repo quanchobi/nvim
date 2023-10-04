@@ -1,80 +1,45 @@
 return {
-    {'VonHeikemen/lsp-zero.nvim',
-    dependencies = {
-        -- LSP Support
-        {'neovim/nvim-lspconfig'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
+    -- LSPconfig, a way to configure the built in neovim LSP client
+    {   "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" }, -- Start server when opening or creating file
 
-        -- Autocompletion
-        {'hrsh7th/nvim-cmp'},
-        {'hrsh7th/cmp-buffer'},
-        {'hrsh7th/cmp-path'},
-        {'saadparwaiz1/cmp_luasnip'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/cmp-nvim-lua'},
+        dependencies = {
+              { "folke/neoconf.nvim", cmd = "Neoconf", dependencies = { "nvim-lspconfig" } },
+              { "folke/neodev.nvim", opts = {} },
+              { "williamboman/mason.nvim" },
+              { "williamboman/mason-lspconfig.nvim" }
+        }
+    }, -- end of lspconfig
 
-        -- Snippets
-        {'L3MON4D3/LuaSnip'},
-        {'rafamadriz/friendly-snippets'},
-    },
-    config = function ()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        local lsp = require("lsp-zero")
+    -- Mason, an easy way to install/manage new language servers
+    {   "williamboman/mason.nvim",
+        opts = {},
+        config = function(_, opts)
+            local mason = require("mason")
+            mason.setup(opts)
+        end,
+    }, -- end of mason
 
-        lsp.preset("recommended")
+    {   "williamboman/mason-lspconfig.nvim",
+        dependencies = { "nvim-lspconfig" },
+        opts = {
+            -- Add servers you want installed here (using mason names)
+            ensure_installed = { "lua_ls", "clangd", "rust_analyzer", "html", "cssls", "bashls" }
+        },
+        config = function(_, opts)
+            local mason_lsp = require("mason-lspconfig")
+            local lsp = require("lspconfig")
 
-        lsp.ensure_installed({
-            'rust_analyzer',
-        })
+            mason_lsp.setup(opts)
 
-        local cmp = require('cmp')
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
-        local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-            ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            ["<C-Space>"] = cmp.mapping.complete(),
-        })
+            -- Set up all language servers here (maybe this should be a for loop?)
+            lsp.lua_ls.setup {}
+            lsp.clangd.setup {}
+            lsp.rust_analyzer.setup {}
+            lsp.html.setup {}
+            lsp.cssls.setup {}
+            lsp.bashls.setup {}
 
-        cmp_mappings['<Tab>'] = nil
-        cmp_mappings['<S-Tab>'] = nil
-
-        lsp.setup_nvim_cmp({
-            mapping = cmp_mappings,
-        })
-
-        lsp.set_preferences({
-            suggest_lsp_servers = false,
-            sign_icons = {
-                error = 'E',
-                warn = 'W',
-                hint = 'H',
-                info = 'I'
-            }
-        })
-
-        lsp.on_attach(function(client, bufnr)
-            local opts = {buffer = bufnr, remap = false}
-
-            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-            vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-            vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-            vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-            vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-            vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        end)
-
-        lsp.setup()
-
-        vim.diagnostic.config({
-            virtual_text = true
-        })
-    end,
-
-}
+        end,
+    }, -- end of mason-lspconfig
 }

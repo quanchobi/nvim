@@ -1,15 +1,7 @@
+-- Vanilla vim keybindings, any plugin specific bindings will be in their plugin configuration files.
 
---[[
-    __              __    _           ___
-   / /_____  __  __/ /_  (_)___  ____/ (_)___  ____ ______
-  / //_/ _ \/ / / / __ \/ / __ \/ __  / / __ \/ __ `/ ___/
- / ,< /  __/ /_/ / /_/ / / / / / /_/ / / / / / /_/ (__  )
-/_/|_|\___/\__, /_.___/_/_/ /_/\__,_/_/_/ /_/\__, /____/
-          /____/                            /____/    --]]
-
-          -- TODO: replace all " with ' where applicable
 -- Disabling mouse
-vim.opt.mouse = ''
+vim.opt.mouse = ""
 -- Setting leader key to space
 vim.g.mapleader = " "
 
@@ -36,7 +28,7 @@ vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = "Copies Selection into 
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = "Copies Line into System Clipboard"})
 
 -- <leader>d deletes to void register
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]], {desc = "Delete into Void Register"})
+vim.keymap.set({"n", "v"}, "<leader>dd", [["_d]], {desc = "Delete into Void Register"})
 
 -- <leader>s replaces current word with whatever is typed in the menu
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "Replace Current Word"})
