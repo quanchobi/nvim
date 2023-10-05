@@ -31,10 +31,6 @@ vim.opt.cursorline = true           -- Highlight current line
 vim.opt.cursorlineopt = 'number'    -- Highlight current linenumber
 vim.opt.scrolloff = 8               -- Min lines at top and bottom is 8
 
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Automatically delete trailing whitespace on write
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },

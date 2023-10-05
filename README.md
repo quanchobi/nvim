@@ -8,6 +8,7 @@ A lightweight, highly customizable, and modular neovim configuration
 * [npm](https://github.com/npm/cli)
 * [make](https://www.gnu.org/software/make/)
 * [python](https://www.python.org/)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Installation
 Simply clone to wherever the neovim configuration is handled for your operating system.
