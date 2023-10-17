@@ -18,6 +18,7 @@ return {
     end,
     dependencies = {
         {   "hrsh7th/nvim-cmp",
+            event = "InsertEnter",
             optional = true
         }
     },

@@ -1,6 +1,5 @@
 return {
     "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
     opts = {
         api_key_cmd = "pass show ChatGPT/API-KEY" -- Modify this line as you see fit. See the ChatGPT.nvim github page for more info.
     },
