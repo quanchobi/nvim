@@ -1,3 +1,4 @@
+-- TODO: rewrite this in a more concise way. It's kinda unreadable
 return {
     -- LSPconfig, a way to configure the built in neovim LSP client
     {   "neovim/nvim-lspconfig",

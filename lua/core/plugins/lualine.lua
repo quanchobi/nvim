@@ -1,9 +1,6 @@
+--TODO: Separate the theme into its own file, it takes up way too much space here
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "kyazdani42/nvim-web-devicons",
-        "folke/noice.nvim"
-    },
     config = function()
         -- Eviline config for lualine
         -- Author: shadmansaleh
@@ -224,5 +221,9 @@ return {
             padding = { left = 1 },
         }
         lualine.setup(config)
-    end
+    end,
+    dependencies = {
+        "kyazdani42/nvim-web-devicons",
+        "folke/noice.nvim"
+    },
 }

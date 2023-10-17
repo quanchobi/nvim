@@ -1,10 +1,5 @@
 return {
     "nvim-telescope/telescope.nvim",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
-    },
     opts = {
         extensions = {
             file_browser = {
@@ -27,5 +22,10 @@ return {
         tele.load_extension("fzf")
         tele.load_extension("file_browser")
         vim.keymap.set('n', '<leader>fb', ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true, desc = "File Browser" } )
-    end
+    end,
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+    },
 }
