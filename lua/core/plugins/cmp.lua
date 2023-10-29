@@ -28,8 +28,20 @@ return {
 
             local cmp = require("cmp")
             local luasnip = require("luasnip")
+            local kind = require("lspkind")
 
             cmp.setup({
+                window = {
+                    completion = {
+                        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+                    },
+                    documentation = {
+                        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+                    },
+                },
+                formatting = {
+                    format = kind.cmp_format(),
+                },
                 sources = opts.sources,
                 snippet = opts.snippet,
                 -- couldn't put keymap in opts, so it's here instead
@@ -56,8 +68,8 @@ return {
                         end
                     end, { "i", "s" }),
 
-                    ["<CR>"] = cmp.mapping.confirm { select = false }
-                }
+                    ["<CR>"] = cmp.mapping.confirm { select = false },
+                },
             })
         end,
         dependencies = {
@@ -69,13 +81,14 @@ return {
             { "saadparwaiz1/cmp_luasnip",
                 dependencies = {
                     { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-                    {   "rafamadriz/friendly-snippets",
-                        config = function()
-                            require("luasnip.loaders.from_vscode").lazy_load()
-                        end
+                    { "rafamadriz/friendly-snippets",
+                      config = function()
+                          require("luasnip.loaders.from_vscode").lazy_load()
+                      end
                     }
                 },
-            }
+            },
+            { "onsails/lspkind.nvim" }
         },
     },
 }

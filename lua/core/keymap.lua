@@ -21,7 +21,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Deletes highlighted word into void register when pasting over it when <leader>p is pressed instead of p to paste
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", "\"_dP", {desc = "Paste, Overwritten Text into Void Register"})
 
 -- <leader>y copies to system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = "Copies Selection into System Clipboard"})
