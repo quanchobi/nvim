@@ -9,6 +9,7 @@ return {
                 { name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
+                { name = "orgmode" },
             },
             -- Snippet expansion
             snippet = {
