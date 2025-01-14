@@ -19,13 +19,13 @@ return {
         vim.keymap.set('n', '<leader>of', builtin.oldfiles, { desc = "Recent Files" })
         vim.keymap.set('n', '<leader>mp', builtin.man_pages, { desc = "Man Pages" })
 
-        tele.load_extension("fzf")
+        -- tele.load_extension("fzf") # doesn't work on nixos currently
         tele.load_extension("file_browser")
         vim.keymap.set('n', '<leader>fb', ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true, desc = "File Browser" } )
     end,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+        -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
     },
 }
