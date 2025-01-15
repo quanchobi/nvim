@@ -14,10 +14,25 @@ return {
                 end,
             },
             { "williamboman/mason-lspconfig.nvim",
-                dependencies = { "nvim-lspconfig" },
+                dependencies = { "nvim-lspconfig",
+                    opts = {
+                        settings = {
+                            nixd = {
+                                options = {
+                                    home_manager = {
+                                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    config = function(_, opts)
+                         require("lspconfig").nixd.setup(opts)
+                    end,
+                },
                 opts = {
                     -- Add servers you want installed here (using mason names)
-                    ensure_installed = { "lua_ls", "textlsp", "nil_ls", "clangd", "rust_analyzer", "html", "cssls", "bashls" }
+                    ensure_installed = { "lua_ls", "textlsp", --[["nil_ls",--]] "clangd", "rust_analyzer", "html", "cssls", "bashls" }
                 },
                 config = function(_, opts)
                     local mason_lsp = require("mason-lspconfig")
@@ -31,7 +46,7 @@ return {
                     lsp.html.setup {}
                     lsp.cssls.setup {}
                     lsp.bashls.setup {}
-                    lsp.nil_ls.setup {}
+                    -- lsp.nil_ls.setup {}
                     lsp.textlsp.setup {}
                     lsp.lua_ls.setup {}
 --                    lsp.stylua.setup {}

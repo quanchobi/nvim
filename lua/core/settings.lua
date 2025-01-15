@@ -31,6 +31,22 @@ vim.opt.cursorline = true           -- Highlight current line
 vim.opt.cursorlineopt = 'number'    -- Highlight current linenumber
 vim.opt.scrolloff = 8               -- Min lines at top and bottom is 8
 
+-- Indentation based on filetype
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "nix",
+    command = "setlocal shiftwidth=2 tabstop=2"
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "html",
+    command = "setlocal shiftwidth=2 tabstop=2"
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "py",
+    command = "setlocal shiftwidth=2 tabstop=2"
+})
+
 -- Automatically delete trailing whitespace on write
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },

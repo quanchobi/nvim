@@ -15,7 +15,7 @@ return {
             enable = true,
             additional_vim_regex_highlightings = false
         },
-        indent = { enable = true },
+        indent = { enable = false },
         auto_install = true,
     },
     config = function(_, opts)
